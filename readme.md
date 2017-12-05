@@ -4,9 +4,9 @@
 
 ### Team Members: 	
 Andy Oh  
-Marek Malinowski
-Jonathan Tuttle
-Ashish Nachane
+Marek Malinowski  
+Jonathan Tuttle  
+Ashish Nachane  
 
 **Date:** 12/19/2017
 
@@ -25,4 +25,4 @@ The challenge is acquiring accurate/ current population data for free and compar
 
 
 ### Project Links: 
-GitHub - (https://github.com/TurnpikeWarrior/Project_DissolvableData)  
+GitHub - https://github.com/TurnpikeWarrior/Project_DissolvableData  
