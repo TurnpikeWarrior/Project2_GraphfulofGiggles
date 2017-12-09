@@ -1,7 +1,7 @@
 // Creating map object
 var map = L.map("map", {
     center: [40.7128, -74.0059],
-    zoom: 7
+    zoom: 7.5
   });
   
 // Adding tile layer
@@ -22,7 +22,7 @@ function chooseColor(NAME) {
 // Grabbing our GeoJSON data..
 d3.json(link, function(data) {
   // Creating a GeoJSON layer with the retrieved data
-  L.geoJSON(data, {
+  L.geoJson(data, {
     style: function(feature) {
       return {
         color: "white",
@@ -33,3 +33,25 @@ d3.json(link, function(data) {
     }
   }).addTo(map);
 });
+
+var cities = [{
+  location: [39.924045, -75.037583],
+  name: "CHERRY HILL"
+},
+{
+  location: [41.3017884, -72.7093312],
+  name: "GUILFORD"
+},
+{
+  location: [40.5549767, -74.3165411],
+  name: "WOODBRIDGE"
+}
+];
+
+// Loop through the cities array and create one marker for each city, bind a popup containing its name and population add it to the map
+for (var i = 0; i < cities.length; i++) {
+  var city = cities[i];
+  L.marker(city.location)
+    .bindPopup("<h1>" + city.name + "</h1>")
+    .addTo(map);
+}
