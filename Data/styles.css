@@ -1,0 +1,12 @@
+.form-control {
+  font-weight: bolder
+  display: inline-block;
+  width: 250px;
+  margin-top: 50px;
+}
+
+.noscroll {
+  overflow: scroll;
+  overflow-x: scroll;
+  overflow-y:hidden
+}
