@@ -8,7 +8,7 @@ var map = L.map("map", {
 L.tileLayer("https://api.mapbox.com/styles/v1/mapbox/outdoors-v10/tiles/256/{z}/{x}/{y}?" +
 "access_token=pk.eyJ1IjoiaGVsaWNvbjEyMyIsImEiOiJjamFrYTAzdDAyaG93MnhxdXlycm1xbHk1In0.RZ02ssPS4DfeGvM2sx7INg").addTo(map);
 
-var link = "gz_2010_us_040_00_500k.json"; 
+var link = "http://brickcode.com/raw_data/gz_2010_us_040_00_500k.json"; 
 
 function chooseColor(NAME) {
   switch (NAME) {
