@@ -21,6 +21,12 @@ The challenge is acquiring accurate/ current population data for free and compar
 ### Process: 
 
 
+### Technologies Used: 
+HTML/CSS/Javascript  
+MapBox  
+Flask  
+GitHub  
+
 ### Resource: 
 
 
