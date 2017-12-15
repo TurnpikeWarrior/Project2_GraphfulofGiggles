@@ -59,7 +59,23 @@ var cities = [{
 // Loop through the cities array and create one marker for each city, bind a popup containing its name and population add it to the map
 for (var i = 0; i < cities.length; i++) {
   var city = cities[i];
-  L.marker(city.location)
-    .bindPopup("<h1>" + city.name + "</h1>")
-    .addTo(map);
+  // L.marker(city.location)
+  //   .bindPopup("<h1>" + city.name + "</h1>")
+  //   .addTo(map);
+
+var marker = new L.marker(city.location).addTo(map).on('mouseover', onClick);
+    marker.key = city.name;
+}
+    // var marker2 =new  L.marker([13.0101, 80.2157]).addTo(mymap).on('mouseover', onClick);
+    // marker2.key = "marker-2";
+
+    function onClick(e) {
+      var stName=this.key;
+    alert(stName); // i can expect my keys here
+
+    console.log("in 76 " + stName);
+    Plotly.d3.json('/allZips?'+stName, function(error, zipList) {
+    if (error) return console.warn(error);
+        console.log(zipList);
+    });
 }
