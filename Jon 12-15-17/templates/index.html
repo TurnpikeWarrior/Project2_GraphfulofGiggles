@@ -71,6 +71,8 @@
 <!-- ==========================Chart================================================================================================ -->
 
 <h1 align="center">Customer Demographics</h1>
+
+<h4 align="center">An interactive visualization providing meaningful geographic and demographic information for any business. </h4>
             <br />
             <div class="noscroll">
                 <table id="data-table" class= table "table-bordered">
@@ -102,9 +104,9 @@
 
 <!-- ==========================Chart================================================================================================ -->
       </div>
-      <div class=".col-md-6">
-        <h3>Summary</h3>
-      </div>
+      <!-- <div class=".col-md-6">
+        <h4>An interactive visualization providing meaningful geographic and demographic information for any business. </h4>
+      </div> -->
     </div>
   </div>
 
@@ -180,7 +182,7 @@ Plotly.d3.json('/allStores', function(error, cities){
 
 var TradeArea=document.getElementById("TradeArea")
 
-    var zipList=[]
+    // var zipList=[]
     
     // [{              
     //               City: "Bloomfield",
@@ -207,7 +209,7 @@ var TradeArea=document.getElementById("TradeArea")
      
       
       // var TradeArea=document.getElementById("TradeArea")
-      var TradeArea=5
+      var TradeArea=20
       
       var stName=this.key;
     // alert(stName); // i can expect my keys here
@@ -230,9 +232,11 @@ var TradeArea=document.getElementById("TradeArea")
         color: 'red',
         fillColor: '#f03',
         fillOpacity: 0.5,
-        radius: TradeArea*10000
+        radius: TradeArea/0.000621371
+        
 }).addTo(map);
-
+table.ajax.reload();
+console.log(TradeArea/0.000621371);
 //==========================test========================================================================================
 
 }
