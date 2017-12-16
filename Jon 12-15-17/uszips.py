@@ -99,23 +99,23 @@ def getZips():
 		# allZips.append(aRec.Zipcode)
 		# allPop.append(aRec.Population)
 		# allIncome.append(aRec.Total)
-		zDict["City"] = aRec.Zipcode
-		zDict["Density"] = aRec.Zipcode
-		zDict["HouseOfUnits"] = aRec.Zipcode
-		zDict["LandArea"] = aRec.Zipcode
-		zDict["Latitude"] = aRec.Zipcode
-		zDict["Longitude"] = aRec.Zipcode
-		zDict["NEBoundLatitude"] = aRec.Zipcode
-		zDict["NEBoundLongitude"] = aRec.Zipcode
-		zDict["Population"] = aRec.Zipcode
-		zDict["SWBoundLatitude"] = aRec.Zipcode
-		zDict["SWBoungLongitude"] = aRec.Zipcode
-		zDict["State"] = aRec.Zipcode
-		zDict["TotalWages"] = aRec.Zipcode
-		zDict["WaterArea"] = aRec.Zipcode
-		zDict["Wealthy"] = aRec.Zipcode
+		zDict["City"] = aRec.City
+		zDict["Density"] = aRec.Density
+		zDict["HouseOfUnits"] = aRec.HouseOfUnits
+		zDict["LandArea"] = aRec.LandArea
+		zDict["Latitude"] = aRec.Latitude
+		zDict["Longitude"] = aRec.Longitude
+		zDict["NEBoundLatitude"] = aRec.NEBoundLatitude
+		zDict["NEBoundLongitude"] = aRec.NEBoundLongitude
+		zDict["Population"] = aRec.Population
+		zDict["SWBoundLatitude"] = aRec.SWBoundLatitude
+		zDict["SWBoungLongitude"] = aRec.SWBoungLongitude
+		zDict["State"] = aRec.State
+		zDict["TotalWages"] = aRec.TotalWages
+		zDict["WaterArea"] = aRec.WaterArea
+		zDict["Wealthy"] = aRec.Wealthy
 		zDict["Zipcode"] = aRec.Zipcode
-		zDict["ZipcodeType"] = aRec.Zipcode
+		zDict["ZipcodeType"] = aRec.ZipcodeType
 
 		
 		allZips.append(zDict)

@@ -46,13 +46,13 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="#">Graphs of Giggles</a>
+        <a class="navbar-brand" href="#">W.A.Y.S., an interactive visualization providing meaningful geographic and demographic information for any business</a>
       </div>
       <div id="navbar" class="collapse navbar-collapse">
         <ul class="nav navbar-nav">
-          <li class="active"><a href="#">Home</a></li>
+          <!-- <li class="active"><a href="#">Home</a></li>
           <li><a href="#about">About</a></li>
-          <li><a href="#contact">Contact</a></li>
+          <li><a href="#contact">Contact</a></li> -->
         </ul>
       </div><!--/.nav-collapse -->
     </div>
@@ -71,9 +71,6 @@
 <!-- ==========================Chart================================================================================================ -->
 
 <h1 align="center">Customer Demographics</h1>
-
-<h4 align="center">An interactive visualization providing meaningful geographic and demographic information for any business. </h4>
-            <br />
             <div class="noscroll">
                 <table id="data-table" class= table "table-bordered">
                     <thead>
@@ -177,76 +174,35 @@ Plotly.d3.json('/allStores', function(error, cities){
       //   .addTo(map);
     var marker = new L.marker(city.Location).addTo(map).on('click', onClick);
         marker.key = city.StoreName;
+        marker.loc = city.Location;
     }
 });
 
 var TradeArea=document.getElementById("TradeArea")
 
-    // var zipList=[]
-    
-    // [{              
-    //               City: "Bloomfield",
-    //               Density: 8943.667296786389,
-    //               HouseOfUnits: 19468,
-    //               LandArea: 5.29,
-    //               Latitude: 40.7989068,
-    //               Longitude: -74.1885825,
-    //               NEBoundLatitude: 40.848799,
-    //               NEBoundLongitude: -74.162628,
-    //               Population: 47312,
-    //               SWBoundLatitude: 40.767838899999994,
-    //               SWBoungLongitude: -74.21189,
-    //               State: "NJ",
-    //               TotalWages: 1127181370.0,
-    //               WaterArea: 0.02,
-    //               Wealthy: 23824.42868616841,
-    //               Zipcode: "07003",
-    //               ZipcodeType: "Standard"
-    //               }]
-
-    function onClick(e, city) {
+//==========================onClickStart========================================================================================
+    function onClick(e) {
       // console.log(city.Location+"JJJJJ")
      
-      
+
       // var TradeArea=document.getElementById("TradeArea")
       var TradeArea=20
       
       var stName=this.key;
     // alert(stName); // i can expect my keys here
 
-     console.log("in 76 " + stName);
+    //  console.log("in 76 " + stName);
       Plotly.d3.json('/allZips?Store='+stName+'&Scope='+TradeArea, function(error, zipList) {
         if (error) return console.warn(error);
           console.log(zipList);
-          
-          
-          // render(dataTable)
-          
-        });
 
-      // var coordinates = [zipList.Latitude+","+zipList.Longitude]
-      //   console.log(coordinates+"TTTT")
-
-      // var circle = L.circle(coordinates, {
-        var circle = L.circle([40.6501296,-74.3384378], {
-        color: 'red',
-        fillColor: '#f03',
-        fillOpacity: 0.5,
-        radius: TradeArea/0.000621371
-        
-}).addTo(map);
-table.ajax.reload();
-console.log(TradeArea/0.000621371);
-//==========================test========================================================================================
-
-}
-
-
-              
-          
-                $(document).ready(function(){
+          $(document).ready(function(){
                     $('#data-table').DataTable({
-                        data: zipList,
+                        destroy: true,
+                        searching: false,
+                        retrieve:true,
+                        // columns.render:true,
+                        data: zipList,  
                         columns: [
                             {data:"City" },
                             {data:"Density" },
@@ -268,8 +224,62 @@ console.log(TradeArea/0.000621371);
                                 
                             
                         ]
-                    });
+                    }).rows().invalidate('data').draw(false);
                 });
+        });
+
+        var circle = L.circle(this.loc, {
+        color: 'red',
+        fillColor: '#f03',
+        fillOpacity: 0.5,
+        radius: TradeArea/0.000621371
+        
+}).addTo(map);
+
+
+console.log(TradeArea/0.000621371);
+
+// $('#data-table').ajax.reload();
+
+// var table = $('#data-table').DataTable();
+// table.ajax.reload();
+
+}
+//==========================onClickEnd========================================================================================     
+
+
+$(document).ready(function(){
+  aTable =   $('#data-table').DataTable({
+      destroy: true,
+      searching: false,
+      retrieve:true,
+      // columns.render:true,
+      data: zipList,  
+      columns: [
+          {data:"City" },
+          {data:"Density" },
+          // {data:"HouseOfUnits" },
+          // {data:"LandArea" },
+          // {data:"Latitude" },
+          // {data:"Longitude" },
+          // {data:"NEBoundLatitude" },
+          // {data:"NEBoundLongitude" },
+          {data:"Population" },
+          // {data:"SWBoundLatitude" },
+          // {data:"SWBoungLongitude" },
+          {data:"State" },
+          {data:"TotalWages" },
+          // {data:"WaterArea" },
+          {data:"Wealthy" },
+          {data:"Zipcode" },
+          // {data:"ZipcodeType" }
+              
+          
+      ]
+  })
+  aTable.fnClearTable();
+});
+// });
 
 
 
