@@ -141,27 +141,42 @@
 <!-- <script type="text/javascript" src="/Rutgers/python/homework/circleProject/Circle-File/templates/logic.js"></script> -->
 
 <script>
-var data = [{
-  values: [19, 26, 55, 10, 30],
-  labels: ['City', 'Density', 'Population', 'Per Capita Income'],
-  type: 'pie'
-}];
 
-var layout = {
-  height: 400,
-  width: 500
-};
+// var data = [{
+//   values: [19, 26, 55, 10, 30],
+//   labels: ['City', 'Density', 'Population', 'Per Capita Income'],
+//   type: 'pie'
+// }];
 
-Plotly.newPlot('pieChart', data, layout);
+// var layout = {
+//   height: 400,
+//   width: 500
+// };
 
-  mapboxgl.accessToken = 'pk.eyJ1IjoiaGVsaWNvbjEyMyIsImEiOiJjamFrYTAzdDAyaG93MnhxdXlycm1xbHk1In0.RZ02ssPS4DfeGvM2sx7INg';
-  
-var map = new mapboxgl.Map({
-    container: 'map',
-    style: 'mapbox://styles/mapbox/light-v9',
-    center: [-96, 37.8],
-    zoom: 3
-  });
+// Plotly.newPlot('pieChart', data, layout);
+
+
+// Mapbox
+// mapboxgl.accessToken = 'pk.eyJ1IjoiaGVsaWNvbjEyMyIsImEiOiJjamFrYTAzdDAyaG93MnhxdXlycm1xbHk1In0.RZ02ssPS4DfeGvM2sx7INg';
+
+// var map = new mapboxgl.Map({
+//     container: 'map',
+//     style: 'mapbox://styles/mapbox/light-v9',
+//     center: [-96, 37.8],
+//     zoom: 3
+//   });
+
+
+// ==============================================================
+// WORKING MAP
+// ==============================================================
+
+// Initial SelectedZips
+selectedZips = ["07309", "08869", "088534", "07104", "08559"];
+
+// Initial Zip Map
+var link = "../static/GeoJZipcodesforNJBorders.geojson";
+
 // Creating map object
 var map = L.map("map", {
     center: [40.7128, -74.0059],
@@ -170,29 +185,43 @@ var map = L.map("map", {
   
 // Adding tile layer
 L.tileLayer("https://api.mapbox.com/styles/v1/helicon123/cjb1i52fgqpi12rkaruc9jlkb/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoiaGVsaWNvbjEyMyIsImEiOiJjamFrYTAzdDAyaG93MnhxdXlycm1xbHk1In0.RZ02ssPS4DfeGvM2sx7INg").addTo(map);
-var link = "gz_2010_us_040_00_500k.json"; 
-function chooseColor(NAME) {
-  switch (NAME) {
-    case "New Jersey":
-      return "yellow";
-    default:
-      return "black";
+
+// Function that will determine opacity based on whether we see the selection
+function chooseOpacity(zipcode) {
+
+  if (selectedZips.indexOf(zipcode) > -1)
+  {
+    return 1.0;
+  }
+  else {
+    return 0.0;
   }
 }
+
 // Grabbing our GeoJSON data..
 d3.json(link, function(data) {
-  // Creating a GeoJSON layer with the retrieved data
+  // Creating a geoJSON layer with the retrieved data
   L.geoJson(data, {
+
+    // Base Map Style
     style: function(feature) {
       return {
-        color: "white",
-        fillColor: chooseColor(feature.properties.NAME),
-        fillOpacity: 0.5,
-        weight: 1.5
-      };
+        color: "gray",
+        fillColor: "red",
+        fillOpacity: chooseOpacity(feature.properties.ZCTA5CE10),
+        // stroke: false,
+        weight: 0.5
+      }
+    },
+
+    // Called on each feature
+    onEachFeature: function(feature, layer) {
+      layer.bindPopup("<h1>" + feature.properties.ZCTA5CE10 + "</h1>");
     }
   }).addTo(map);
 });
+
+
 Plotly.d3.json('/allStores', function(error, cities){
    if (error) return console.warn('WHAT?');
    console.log(cities.length);
