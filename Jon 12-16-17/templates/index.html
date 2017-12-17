@@ -177,6 +177,7 @@
 // Initial SelectedZips
 
 selectedZips = [];
+selectedZipsData = [];
 counter = 0;
 
 // Creating map object
@@ -266,80 +267,77 @@ renderMap();
 
 // var TradeArea=document.getElementById("TradeArea")
 //==========================onClickStart========================================================================================
-    function onClick(e) {
+    function onClick(e) { 
 
-      // var TradeArea=10
       var TradeArea = document.getElementById("myRange").value;
-      console.log(TradeArea)
-
+      console.log(TradeArea);
       var stName=this.key;
-    // alert(stName); // i can expect my keys here
-    //  console.log("in 76 " + stName);
-      Plotly.d3.json('/allZips?Store='+stName+'&Scope='+TradeArea, function(error, zipList) {
-        if (error) return console.warn(error);
 
-          console.log(zipList);
+      Plotly.d3.json('/allZips?Store='+stName+'&Scope='+TradeArea, function(error, zipList) {
+
+        if (error) return console.warn(error);
+        console.log(zipList);
 
         // Add zipcodes 
         for (var i=0; i<zipList.length; i++){
 
-         selectedZips.push(zipList[i].Zipcode);        
+         selectedZips.push(zipList[i].Zipcode);     
+         selectedZipsData.push(zipList[i]);   
         }
- 
+
         // Run the renderMap
         renderMap();
 
-        setTimeout(Demographic, 0);
-        function Demographic(){
-          $(document).ready(function(){
-                    $('#data-table').DataTable({
-                        destroy: true,
-                        searching: true,
-                        retrieve:true,
-                        // columns.render:true,
-                        data: zipList,  
-                        columns: [
-                            {data:"City" },
-                            {data:"Density" },
-                            // {data:"HouseOfUnits" },
-                            // {data:"LandArea" },
-                            // {data:"Latitude" },
-                            // {data:"Longitude" },
-                            // {data:"NEBoundLatitude" },
-                            // {data:"NEBoundLongitude" },
-                            {data:"Population" },
-                            // {data:"SWBoundLatitude" },
-                            // {data:"SWBoungLongitude" },
-                            {data:"State" },
-                            // {data:"TotalWages" },
-                            // {data:"WaterArea" },
-                            {data:"Wealthy" },
-                            {data:"Zipcode" },
-                            // {data:"ZipcodeType" }
-                                
-                            
-                        ]
-                    }).rows().invalidate('data').draw(false);
-                });}
+
+        console.log(selectedZipsData)
+
+
+        var datatable = $("#data-table").DataTable({
+            destroy: true,
+            // searching: true,
+            retrieve:true,
+            // columns.render:true,
+            data: selectedZipsData,  
+            columns: [
+                {data:"City" },
+                {data:"Density" },
+                // {data:"HouseOfUnits" },
+                // {data:"LandArea" },
+                // {data:"Latitude" },
+                // {data:"Longitude" },
+                // {data:"NEBoundLatitude" },
+                // {data:"NEBoundLongitude" },
+                {data:"Population" },
+                // {data:"SWBoundLatitude" },
+                // {data:"SWBoungLongitude" },
+                {data:"State" },
+                // {data:"TotalWages" },
+                // {data:"WaterArea" },
+                {data:"Wealthy" },
+                {data:"Zipcode" },
+                // {data:"ZipcodeType" }  
+            ]
         });
-        
-        var circle = L.circle(this.loc, {
+
+          datatable.clear();
+          datatable.rows.add(selectedZipsData);
+          datatable.draw();
+      });   
+
+
+      var circle = L.circle(this.loc, {
         color: 'red',
         fillColor: '#f03',
         fillOpacity: 0.5,
         radius: TradeArea/0.000621371
-        
-}).addTo(map);
-console.log(TradeArea/0.000621371);
-// $('#data-table').ajax.reload();
-// var table = $('#data-table').DataTable();
-// table.ajax.reload();
-}
+      }).addTo(map);
+
+    }
 //==========================onClickEnd========================================================================================     
 function sliderChange(val) {
     document.getElementById('output').innerHTML = val;
-      }
       document.getElementById('slider').value = 60;
+  }
 </script>
 
 
