@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+     <!--AJAX -->
+     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css">
+     <script type="text/javascript" src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+ 
+     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css">
+     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+     <link rel="stylesheet" type="text/css" href="styles.css">
+
+     
+
+    <!-- MapBox -->
+    <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.42.1/mapbox-gl.js'></script>
+    <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.42.1/mapbox-gl.css' rel='stylesheet' />
+    <script src='https://api.mapbox.com/mapbox-gl-js/v0.42.0/mapbox-gl.js'></script>
+    <link href='https://api.mapbox.com/mapbox-gl-js/v0.42.0/mapbox-gl.css' rel='stylesheet' />
+
+    <!-- Leaflet JS & CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.2/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.0.2/dist/leaflet.js"></script>
+    
+    <!-- d3 JavaScript -->
+    <script src="https://d3js.org/d3.v4.min.js"></script>
+
+   <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+ 
+    <title>Project 2</title>
+</head>
+
+<body>
+  <nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="#">W.A.Y.S., an interactive visualization providing meaningful geographic and demographic information for any business.</a>      
+      </div>
+      <div id="navbar" class="collapse navbar-collapse">
+        <ul class="nav navbar-nav">
+          <li class="active"><a href="#">Home</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#contact">Contact</a></li>          
+        </ul>
+      </div>
+      <!-- <li><a href="#Trade_Area">Trade Area</a></li> -->
+      
+      
+    </div>
+  </nav>
+  
+  <!-- Map Section -->
+  <div class="container-fluid">
+    <div id='map' style='width: 100%; height: 600px;'></div>
+  </div>
+
+  <!-- Trade Area input============================================================================================================================= -->
+      <div>     
+        <input type="range" id="myRange" min="0" value="10" max="60">
+        <button onclick="myFunction()">Select Your Trade Area</button>
+        </div> 
+
+
+  <!-- Summary Section -->
+  <div class="container">
+    <div class="row">
+      <div class=".col-md-6", id=dataTable>
+
+<!-- ========================== Start Chart Layout================================================================================================ -->
+
+<h1 align="center">Customer Demographics</h1>
+            <div class="noscroll">
+                <table id="data-table" class= table "table-bordered">
+                    <thead>
+                        <tr>
+                            <th>City</th>
+                            <th>Density</th>
+                            <!-- <th>HouseOfUnits</th>
+                            <th>LandArea</th>
+                            <th>Latitude</th>
+                            <th>Longitude</th>
+                            <th>NEBoundLatitude</th>
+                            <th>NEBoundLongitude</th> -->
+                            <th>Population</th>
+                            <!-- <th>SWBoundLatitude</th>
+                            <th>SWBoungLongitude</th> -->
+                            <th>State</th>
+                            <!-- <th>TotalWages</th>
+                            <th>WaterArea</th> -->
+                            <th>Per Capita Income</th>
+                            <th>Zipcode</th>
+                            <!-- <th>ZipcodeType</th> -->
+                        </tr>
+                    </thead>
+                </table>
+            </div>
+        </div>
+
+
+<!-- ==========================End Chart Layout================================================================================================ -->
+      </div>
+      <!-- <div class=".col-md-6">
+        <h4>An interactive visualization providing meaningful geographic and demographic information for any business. </h4>
+      </div> -->
+    </div>
+  </div>
+  
+<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script> -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+<!-- <script type="text/javascript" src="/Rutgers/python/homework/circleProject/Circle-File/templates/logic.js"></script> -->
+
+<script>
+  mapboxgl.accessToken = 'pk.eyJ1IjoiaGVsaWNvbjEyMyIsImEiOiJjamFrYTAzdDAyaG93MnhxdXlycm1xbHk1In0.RZ02ssPS4DfeGvM2sx7INg';
+
+  
+
+var map = new mapboxgl.Map({
+    container: 'map',
+    style: 'mapbox://styles/mapbox/light-v9',
+    center: [-96, 37.8],
+    zoom: 3
+  });
+
+// Creating map object
+var map = L.map("map", {
+    center: [40.7128, -74.0059],
+    zoom: 7.5
+  });
+  
+// Adding tile layer
+L.tileLayer("https://api.mapbox.com/styles/v1/helicon123/cjb1i52fgqpi12rkaruc9jlkb/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoiaGVsaWNvbjEyMyIsImEiOiJjamFrYTAzdDAyaG93MnhxdXlycm1xbHk1In0.RZ02ssPS4DfeGvM2sx7INg").addTo(map);
+
+var link = "gz_2010_us_040_00_500k.json"; 
+
+function chooseColor(NAME) {
+  switch (NAME) {
+    case "New Jersey":
+      return "yellow";
+    default:
+      return "black";
+  }
+}
+
+// Grabbing our GeoJSON data..
+d3.json(link, function(data) {
+  // Creating a GeoJSON layer with the retrieved data
+  L.geoJson(data, {
+    style: function(feature) {
+      return {
+        color: "white",
+        fillColor: chooseColor(feature.properties.NAME),
+        fillOpacity: 0.5,
+        weight: 1.5
+      };
+    }
+  }).addTo(map);
+});
+
+
+
+Plotly.d3.json('/allStores', function(error, cities){
+   if (error) return console.warn('WHAT?');
+   console.log(cities.length);
+
+    for (var i = 0; i < cities.length; i++) {
+      var city = cities[i];
+      // console.log(city.Location)
+      
+      // L.marker(city.location)
+      //   .bindPopup("<h1>" + city.name + "</h1>")
+      //   .addTo(map);
+    var marker = new L.marker(city.Location).addTo(map).on('click', onClick);
+        marker.key = city.StoreName;
+        marker.loc = city.Location;
+    }
+});
+
+// var TradeArea=document.getElementById("TradeArea")
+
+//==========================onClickStart========================================================================================
+    function onClick(e) {
+      // console.log(city.Location+"JJJJJ")
+           
+      // var TradeArea=document.getElementById("TradeArea")
+      var TradeArea=10
+      
+      var stName=this.key;
+    // alert(stName); // i can expect my keys here
+
+    //  console.log("in 76 " + stName);
+      Plotly.d3.json('/allZips?Store='+stName+'&Scope='+TradeArea, function(error, zipList) {
+        if (error) return console.warn(error);
+          console.log(zipList);
+
+
+        setTimeout(Demographic, 0);
+
+        function Demographic(){
+          $(document).ready(function(){
+                    $('#data-table').DataTable({
+                        destroy: true,
+                        searching: true,
+                        retrieve:true,
+                        // columns.render:true,
+                        data: zipList,  
+                        columns: [
+                            {data:"City" },
+                            {data:"Density" },
+                            // {data:"HouseOfUnits" },
+                            // {data:"LandArea" },
+                            // {data:"Latitude" },
+                            // {data:"Longitude" },
+                            // {data:"NEBoundLatitude" },
+                            // {data:"NEBoundLongitude" },
+                            {data:"Population" },
+                            // {data:"SWBoundLatitude" },
+                            // {data:"SWBoungLongitude" },
+                            {data:"State" },
+                            // {data:"TotalWages" },
+                            // {data:"WaterArea" },
+                            {data:"Wealthy" },
+                            {data:"Zipcode" },
+                            // {data:"ZipcodeType" }
+                                
+                            
+                        ]
+                    }).rows().invalidate('data').draw(false);
+                });}
+
+
+        });
+
+        var circle = L.circle(this.loc, {
+        color: 'red',
+        fillColor: '#f03',
+        fillOpacity: 0.5,
+        radius: TradeArea/0.000621371
+        
+}).addTo(map);
+
+
+console.log(TradeArea/0.000621371);
+
+// $('#data-table').ajax.reload();
+
+// var table = $('#data-table').DataTable();
+// table.ajax.reload();
+
+}
+//==========================onClickEnd========================================================================================     
+
+
+     // Slider========================================================================================================================
+     function myFunction() {
+                  var TradeArea = document.getElementById("myRange").value;
+                  console.log(TradeArea)
+              }
+</script>
+
+
+</body>
+</html>
