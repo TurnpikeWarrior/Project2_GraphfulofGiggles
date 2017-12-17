@@ -1,4 +1,5 @@
-mapboxgl.accessToken = 'pk.eyJ1IjoiaGVsaWNvbjEyMyIsImEiOiJjamFrYTAzdDAyaG93MnhxdXlycm1xbHk1In0.RZ02ssPS4DfeGvM2sx7INg';
+
+  mapboxgl.accessToken = 'pk.eyJ1IjoiaGVsaWNvbjEyMyIsImEiOiJjamFrYTAzdDAyaG93MnhxdXlycm1xbHk1In0.RZ02ssPS4DfeGvM2sx7INg';
 
   
 
@@ -83,6 +84,11 @@ var TradeArea=document.getElementById("TradeArea")
         if (error) return console.warn(error);
           console.log(zipList);
 
+        
+
+        setTimeout(Demographic, 0);
+
+        function Demographic(){
           $(document).ready(function(){
                     $('#data-table').DataTable({
                         destroy: true,
@@ -103,7 +109,7 @@ var TradeArea=document.getElementById("TradeArea")
                             // {data:"SWBoundLatitude" },
                             // {data:"SWBoungLongitude" },
                             {data:"State" },
-                            {data:"TotalWages" },
+                            // {data:"TotalWages" },
                             // {data:"WaterArea" },
                             {data:"Wealthy" },
                             {data:"Zipcode" },
@@ -112,7 +118,9 @@ var TradeArea=document.getElementById("TradeArea")
                             
                         ]
                     }).rows().invalidate('data').draw(false);
-                });
+                });}
+
+
         });
 
         var circle = L.circle(this.loc, {
@@ -133,3 +141,4 @@ console.log(TradeArea/0.000621371);
 
 }
 //==========================onClickEnd========================================================================================     
+
