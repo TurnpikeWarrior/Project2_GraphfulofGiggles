@@ -16,7 +16,9 @@
      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
      <link rel="stylesheet" type="text/css" href="styles.css">
       
-     
+    <!-- Plotly -->
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/numeric/1.2.6/numeric.min.js"></script>
 
     <!-- MapBox -->
     <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.42.1/mapbox-gl.js'></script>
@@ -127,6 +129,10 @@
         <h4>An interactive visualization providing meaningful geographic and demographic information for any business. </h4>
       </div> -->
     </div>
+
+    <div class="container">
+        <div id="pieChart"><!-- Plotly chart will be drawn inside this DIV --></div>
+    </div>
   </div>
   
 <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script> -->
@@ -135,6 +141,19 @@
 <!-- <script type="text/javascript" src="/Rutgers/python/homework/circleProject/Circle-File/templates/logic.js"></script> -->
 
 <script>
+var data = [{
+  values: [19, 26, 55, 10, 30],
+  labels: ['City', 'Density', 'Population', 'Per Capita Income'],
+  type: 'pie'
+}];
+
+var layout = {
+  height: 400,
+  width: 500
+};
+
+Plotly.newPlot('pieChart', data, layout);
+
   mapboxgl.accessToken = 'pk.eyJ1IjoiaGVsaWNvbjEyMyIsImEiOiJjamFrYTAzdDAyaG93MnhxdXlycm1xbHk1In0.RZ02ssPS4DfeGvM2sx7INg';
   
 var map = new mapboxgl.Map({
