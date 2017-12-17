@@ -48,6 +48,9 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
+  
+<!--         <button id="REFRESHTEST">REFRESH</button>
+ -->
         <a class="navbar-brand" href="#">W.A.Y.S., an interactive visualization providing meaningful geographic and demographic information for any business.</a>      
       </div>
       <div id="navbar" class="collapse navbar-collapse">
@@ -172,10 +175,9 @@
 // ==============================================================
 
 // Initial SelectedZips
-selectedZips = ["07309", "08869", "088534", "07104", "08559"];
 
-// Initial Zip Map
-var link = "../static/GeoJZipcodesforNJBorders.geojson";
+selectedZips = [];
+counter = 0;
 
 // Creating map object
 var map = L.map("map", {
@@ -186,40 +188,61 @@ var map = L.map("map", {
 // Adding tile layer
 L.tileLayer("https://api.mapbox.com/styles/v1/helicon123/cjb1i52fgqpi12rkaruc9jlkb/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoiaGVsaWNvbjEyMyIsImEiOiJjamFrYTAzdDAyaG93MnhxdXlycm1xbHk1In0.RZ02ssPS4DfeGvM2sx7INg").addTo(map);
 
-// Function that will determine opacity based on whether we see the selection
-function chooseOpacity(zipcode) {
 
-  if (selectedZips.indexOf(zipcode) > -1)
-  {
-    return 1.0;
-  }
-  else {
-    return 0.0;
-  }
-}
+// $("#REFRESHTEST").click(function(){
+//   renderMap();
+// });
 
-// Grabbing our GeoJSON data..
-d3.json(link, function(data) {
-  // Creating a geoJSON layer with the retrieved data
-  L.geoJson(data, {
+function renderMap(){
 
-    // Base Map Style
-    style: function(feature) {
-      return {
-        color: "gray",
-        fillColor: "red",
-        fillOpacity: chooseOpacity(feature.properties.ZCTA5CE10),
-        // stroke: false,
-        weight: 0.5
+    // Initial Zip Map
+    var link = "../static/GeoJZipcodesforNJBorders.geojson";
+
+    function chooseColor(zipcode) {
+      if (selectedZips.indexOf(zipcode) > -1)
+      {
+        return "blue";
       }
-    },
-
-    // Called on each feature
-    onEachFeature: function(feature, layer) {
-      layer.bindPopup("<h1>" + feature.properties.ZCTA5CE10 + "</h1>");
+      else {
+        return "gray";
+      } 
     }
-  }).addTo(map);
-});
+
+    // Function that will determine opacity based on whether we see the selection
+    function chooseOpacity(zipcode) {
+
+      if (selectedZips.indexOf(zipcode) > -1)
+      {
+        return 0.85;
+      }
+      else {
+        return 0.15;
+      }
+    }
+
+    // Grabbing our GeoJSON data..
+    d3.json(link, function(data) {
+      // Creating a geoJSON layer with the retrieved data
+      L.geoJson(data, {
+
+        // Base Map Style
+        style: function(feature) {
+          return {
+            color: "gray",
+            fillColor: chooseColor(feature.properties.ZCTA5CE10),
+            fillOpacity: chooseOpacity(feature.properties.ZCTA5CE10),
+            // stroke: false,
+            weight: 0.5
+          }
+        },
+
+        // Called on each feature
+        onEachFeature: function(feature, layer) {
+          layer.bindPopup("<h1>" + feature.properties.ZCTA5CE10 + "</h1>");
+        }
+      }).addTo(map);
+    });
+}
 
 
 Plotly.d3.json('/allStores', function(error, cities){
@@ -237,6 +260,10 @@ Plotly.d3.json('/allStores', function(error, cities){
         marker.loc = city.Location;
     }
 });
+
+// Call Render Map
+renderMap();
+
 // var TradeArea=document.getElementById("TradeArea")
 //==========================onClickStart========================================================================================
     function onClick(e) {
@@ -250,7 +277,18 @@ Plotly.d3.json('/allStores', function(error, cities){
     //  console.log("in 76 " + stName);
       Plotly.d3.json('/allZips?Store='+stName+'&Scope='+TradeArea, function(error, zipList) {
         if (error) return console.warn(error);
+
           console.log(zipList);
+
+        // Add zipcodes 
+        for (var i=0; i<zipList.length; i++){
+
+         selectedZips.push(zipList[i].Zipcode);        
+        }
+ 
+        // Run the renderMap
+        renderMap();
+
         setTimeout(Demographic, 0);
         function Demographic(){
           $(document).ready(function(){
