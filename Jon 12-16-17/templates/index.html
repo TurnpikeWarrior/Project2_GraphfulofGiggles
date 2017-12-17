@@ -15,7 +15,7 @@
      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css">
      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
      <link rel="stylesheet" type="text/css" href="styles.css">
-
+      
      
 
     <!-- MapBox -->
@@ -68,13 +68,23 @@
 
   <!-- Trade Area input============================================================================================================================= -->
   <div class="row">
-      <div class="col-md-2">  
-        <input type="range" id="myRange" min="0" value="10" max="60">
-        <p>Select your trade area range</p>
+      <div class="col-md-2">
+        <div >  
+          <input type="range" id="myRange" min="0" value="10" max="60" oninput="sliderChange(this.value)"> 
         </div> 
-        </div>
+      </div>
+      <div class="row">
 
-
+      <div class="col-md-3" > 
+          <div class="col-md-1" align="center">      
+            <output id="output"></output>
+          </div>
+          <div class="col-md-5">
+              <p>Trade Area Value</p>
+          </div>
+      </div>  
+    </div>
+  </div>
   <!-- Summary Section -->
   <div class="container">
     <div class="row">
@@ -240,7 +250,10 @@ console.log(TradeArea/0.000621371);
 // table.ajax.reload();
 }
 //==========================onClickEnd========================================================================================     
-
+function sliderChange(val) {
+    document.getElementById('output').innerHTML = val;
+      }
+      document.getElementById('slider').value = 60;
 </script>
 
 
