@@ -48,10 +48,7 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-  
-<!--         <button id="REFRESHTEST">REFRESH</button>
- -->
-        <a class="navbar-brand" href="#">W.A.Y.S., an interactive visualization providing meaningful geographic and demographic information for any business.</a>      
+        <a class="navbar-brand" href="#">W.A.Y.S.</a>      
       </div>
       <div id="navbar" class="collapse navbar-collapse">
         <ul class="nav navbar-nav">
@@ -60,9 +57,6 @@
           <li><a href="#contact">Contact</a></li>          
         </ul>
       </div>
-      <!-- <li><a href="#Trade_Area">Trade Area</a></li> -->
-      
-      
     </div>
   </nav>
   
@@ -104,21 +98,10 @@
                         <tr>
                             <th>City</th>
                             <th>Density</th>
-                            <!-- <th>HouseOfUnits</th>
-                            <th>LandArea</th>
-                            <th>Latitude</th>
-                            <th>Longitude</th>
-                            <th>NEBoundLatitude</th>
-                            <th>NEBoundLongitude</th> -->
                             <th>Population</th>
-                            <!-- <th>SWBoundLatitude</th>
-                            <th>SWBoungLongitude</th> -->
                             <th>State</th>
-                            <!-- <th>TotalWages</th>
-                            <th>WaterArea</th> -->
                             <th>Per Capita Income</th>
                             <th>Zipcode</th>
-                            <!-- <th>ZipcodeType</th> -->
                         </tr>
                     </thead>
                 </table>
@@ -134,8 +117,12 @@
     </div>
 
     <div class="container">
+        <h3>Population vs Cities</h3>
         <div id="pieChart"><!-- Plotly chart will be drawn inside this DIV --></div>
+
     </div>
+    <h3>Weath Distribution vs Cities</h3>
+    <div class="container" id="wealthChart"> </div>
   </div>
   
 <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script> -->
@@ -146,8 +133,8 @@
 <script>
 
 // var data = [{
-//   values: [19, 26, 55, 10, 30],
-//   labels: ['City', 'Density', 'Population', 'Per Capita Income'],
+//   values: [907.4537750385208, 47115, 19465.55347851224],
+//   labels: ['Density', 'Population', 'Per Capita Income'],
 //   type: 'pie'
 // }];
 
@@ -259,6 +246,7 @@ Plotly.d3.json('/allStores', function(error, cities){
     var marker = new L.marker(city.Location).addTo(map).on('click', onClick);
         marker.key = city.StoreName;
         marker.loc = city.Location;
+        marker.bindPopup("<h1>" + city.StoreName + "</h1>");
     }
 });
 
@@ -272,6 +260,9 @@ renderMap();
       var TradeArea = document.getElementById("myRange").value;
       console.log(TradeArea);
       var stName=this.key;
+      popValues  = [];
+      popCities  = [];
+      wealthValues = [];
 
       Plotly.d3.json('/allZips?Store='+stName+'&Scope='+TradeArea, function(error, zipList) {
 
@@ -282,40 +273,61 @@ renderMap();
         for (var i=0; i<zipList.length; i++){
 
          selectedZips.push(zipList[i].Zipcode);     
-         selectedZipsData.push(zipList[i]);   
+         selectedZipsData.push(zipList[i]);  
+         popValues.push(zipList[i].Population);
+         popCities.push(zipList[i].City);
+         wealthValues.push(zipList[i].Wealthy);
+
         }
 
         // Run the renderMap
         renderMap();
 
 
-        console.log(selectedZipsData)
+        // console.log(selectedZipsData)
+        // Create Population Pie Chart
+        var data = [{
+          values: popValues,
+          labels: popCities,
+          title: 'Population Distribution by Cities',
+          type: 'pie'
+        }];
+
+        var layout = {
+          height: 400,
+          width: 500
+        };
+
+        Plotly.newPlot('pieChart', data, layout);
+
+        //Create Wealth Distribution Chart
+        // Create Population Pie Chart
+        var data = [{
+          values: wealthValues,
+          labels: popCities,
+          type: 'pie'
+        }];
+
+        var layout = {
+          height: 400,
+          width: 500
+        };
+
+        Plotly.newPlot('wealthChart', data, layout);        
 
 
         var datatable = $("#data-table").DataTable({
             destroy: true,
-            // searching: true,
+            searching: false,
             retrieve:true,
             // columns.render:true,
             data: selectedZipsData,  
             columns: [
                 {data:"City" },
                 {data:"Density" },
-                // {data:"HouseOfUnits" },
-                // {data:"LandArea" },
-                // {data:"Latitude" },
-                // {data:"Longitude" },
-                // {data:"NEBoundLatitude" },
-                // {data:"NEBoundLongitude" },
                 {data:"Population" },
-                // {data:"SWBoundLatitude" },
-                // {data:"SWBoungLongitude" },
-                {data:"State" },
-                // {data:"TotalWages" },
-                // {data:"WaterArea" },
                 {data:"Wealthy" },
-                {data:"Zipcode" },
-                // {data:"ZipcodeType" }  
+                {data:"Zipcode" } 
             ]
         });
 
