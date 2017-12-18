@@ -328,6 +328,18 @@ renderMap();
                 {data:"Population" },
                 {data:"Wealthy" },
                 {data:"Zipcode" } 
+            ],
+
+            buttons: [
+            {
+                extend: 'pdf',
+                text: 'Save current page',
+                exportOptions: {
+                    modifier: {
+                        page: 'current'
+                      }
+                  }
+              }
             ]
         });
 
