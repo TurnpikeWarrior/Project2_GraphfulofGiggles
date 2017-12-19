@@ -11,6 +11,7 @@
      <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css">
      <script type="text/javascript" src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
  
+    <!-- Boot Strap -->
      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css">
      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
@@ -34,6 +35,16 @@
     <script src="https://d3js.org/d3.v4.min.js"></script>
 
    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+
+   <!-- JavaScript Buttons -->
+   <script src="https://cdn.datatables.net/buttons/1.5.0/js/dataTables.buttons.min.js"></script>
+   <script src="https://cdn.datatables.net/buttons/1.5.0/js/buttons.flash.min.js"></script>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.32/pdfmake.min.js"></script>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.32/vfs_fonts.js"></script>
+   <script src="https://cdn.datatables.net/buttons/1.5.0/js/buttons.html5.min.js"></script>
+   <script src="https://cdn.datatables.net/buttons/1.5.0/js/buttons.print.min.js"></script>
+   
  
     <title>Project 2</title>
 </head>
@@ -93,7 +104,7 @@
 
 <h1 align="center">Customer Demographics</h1>
             <div class="noscroll">
-                <table id="data-table" class= table "table-bordered">
+                <table id="data-table" class="display" cellspacing="0" width="100%">
                     <thead>
                         <tr>
                             <th>City</th>
@@ -318,29 +329,40 @@ renderMap();
 
         var datatable = $("#data-table").DataTable({
             destroy: true,
-            searching: false,
+            searching: true,
+            filter: true,
+            // dom: '<"top"fl>rt<"bottom"i,,Bp><"clear">',
+            dom: "<'row'<'col-sm-6'l><'col-sm-6'f>>" +
+                  "<'row'<'col-sm-12'tr>>" +
+                  "<'row'<'col-sm-5'i><'col-sm-7'p>>"+
+                  "<'row'<'col-sm-12'B>>",
+                  
+            buttons: ['copy', 'csv', 'excel', 'pdf', 'print'],
             retrieve:true,
+            lengthMenu:[[5,10, 25, 50, -1], [5,10, 25, 50, "All"]],
+
             // columns.render:true,
             data: selectedZipsData,  
             columns: [
                 {data:"City" },
-                {data:"Density" },
+                {data:"Density" , render: $.fn.dataTable.render.number( ',', '.', 2) },
                 {data:"Population" },
-                {data:"Wealthy" },
+                {data:"State" },
+                {data:"Wealthy" , render: $.fn.dataTable.render.number( ',', '.', 2, '$' ) },
                 {data:"Zipcode" } 
             ],
 
-            buttons: [
-            {
-                extend: 'pdf',
-                text: 'Save current page',
-                exportOptions: {
-                    modifier: {
-                        page: 'current'
-                      }
-                  }
-              }
-            ]
+            // buttons: [
+            // {
+            //     extend: 'pdf',
+            //     text: 'Save current page',
+            //     exportOptions: {
+            //         modifier: {
+            //             page: 'current'
+            //           }
+            //       }
+            //   }
+            // ]
         });
 
           datatable.clear();
@@ -362,6 +384,11 @@ function sliderChange(val) {
     document.getElementById('output').innerHTML = val;
       document.getElementById('slider').value = 60;
   }
+
+
+
+
+ 
 </script>
 
 
