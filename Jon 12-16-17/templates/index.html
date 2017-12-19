@@ -2,56 +2,54 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
-     <!--AJAX -->
-     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css">
-     <script type="text/javascript" src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
- 
-    <!-- Boot Strap -->
-     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css">
-     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-     <link rel="stylesheet" type="text/css" href="styles.css">
-      
-    <!-- Plotly -->
-    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/numeric/1.2.6/numeric.min.js"></script>
+  <!-- CSS Stylesheet -->
+  <link rel="stylesheet" type="text/css" href="styles.css">
 
-    <!-- MapBox -->
-    <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.42.1/mapbox-gl.js'></script>
-    <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.42.1/mapbox-gl.css' rel='stylesheet' />
-    <script src='https://api.mapbox.com/mapbox-gl-js/v0.42.0/mapbox-gl.js'></script>
-    <link href='https://api.mapbox.com/mapbox-gl-js/v0.42.0/mapbox-gl.css' rel='stylesheet' />
+  <!--JQuery -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css">
+  <script type="text/javascript" src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
 
-    <!-- Leaflet JS & CSS -->
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.2/dist/leaflet.css" />
-    <script src="https://unpkg.com/leaflet@1.0.2/dist/leaflet.js"></script>
+  <!-- Bootstrap -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css">
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     
-    <!-- d3 JavaScript -->
-    <script src="https://d3js.org/d3.v4.min.js"></script>
+  <!-- Plotly -->
+  <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/numeric/1.2.6/numeric.min.js"></script>
 
-   <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+  <!-- MapBox -->
+  <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.42.1/mapbox-gl.js'></script>
+  <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.42.1/mapbox-gl.css' rel='stylesheet' />
 
-   <!-- JavaScript Buttons -->
-   <script src="https://cdn.datatables.net/buttons/1.5.0/js/dataTables.buttons.min.js"></script>
-   <script src="https://cdn.datatables.net/buttons/1.5.0/js/buttons.flash.min.js"></script>
-   <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
-   <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.32/pdfmake.min.js"></script>
-   <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.32/vfs_fonts.js"></script>
-   <script src="https://cdn.datatables.net/buttons/1.5.0/js/buttons.html5.min.js"></script>
-   <script src="https://cdn.datatables.net/buttons/1.5.0/js/buttons.print.min.js"></script>
-   
+  <!-- Leaflet JS -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.2/dist/leaflet.css" />
+  <script src="https://unpkg.com/leaflet@1.0.2/dist/leaflet.js"></script>
+  
+  <!-- d3 JS -->
+  <script src="https://d3js.org/d3.v4.min.js"></script>
+
+  <!-- JavaScript Buttons -->
+  <script src="https://cdn.datatables.net/buttons/1.5.0/js/dataTables.buttons.min.js"></script>
+  <script src="https://cdn.datatables.net/buttons/1.5.0/js/buttons.flash.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.32/pdfmake.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.32/vfs_fonts.js"></script>
+  <script src="https://cdn.datatables.net/buttons/1.5.0/js/buttons.html5.min.js"></script>
+  <script src="https://cdn.datatables.net/buttons/1.5.0/js/buttons.print.min.js"></script>
  
-    <title>W.A.Y.S.</title>
+  <title>W.A.Y.S.</title>
 </head>
 
 <body>
-  <nav class="navbar navbar-inverse navbar-fixed-top">
-    <div class="container">
+  <!-- NavBar Container -->
+  <!-- <nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container-fluid">
       <div class="navbar-header">
         <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
           <span class="sr-only">Toggle navigation</span>
@@ -64,114 +62,88 @@
       <div id="navbar" class="collapse navbar-collapse">
         <ul class="nav navbar-nav">
           <li class="active"><a href="#">Home</a></li>
-          <li><a href="../static/about.html">About</a></li>
+          <li><a href="about.html">About</a></li>
           <li><a href="#contact">Contact</a></li>          
         </ul>
       </div>
     </div>
-  </nav>
+  </nav> -->
   
-  <!-- Map Section -->
+  <!-- Left Section -->
   <div class="container-fluid">
-    <div id='map' style='width: 100%; height: 600px;'></div>
-  </div>
-
-  <!-- Trade Area input============================================================================================================================= -->
-  <div class="row">
-      <div class="col-md-2">
-        <div class="col-md-12">  
-          <input type="range" id="myRange" min="0" value="10" max="60" oninput="sliderChange(this.value)"> 
-        </div> 
-      </div>
-      <div class="row">
-
-      <div class="col-md-3" > 
-          <div class="col-md-1" align="left">      
-            <output id="output"></output>
+    <div class="row">
+        <div class="col-md-5">
+          <div class="container">
+              <h3>Population vs Cities</h3>
+              <div id="pieChart"><!-- Plotly chart will be drawn inside this DIV --></div>
           </div>
-          <div class="col-md-9">
+
+          <div class="container">
+            <h3>Weath Distribution vs Cities</h3>
+            <div id="wealthChart"></div>
+          </div>
+
+        </div>
+        
+        <!-- Right Section -->
+        <div class="col-md-7">
+          <!-- Map Layout -->
+          <div id='map' style="width: 100%; height: 600px;"></div>
+          
+          <!-- Trade Area Input -->
+          <div class="row">
+            <div class="col-md-2">
+              <input type="range" id="myRange" min="0" value="10" max="60" oninput="sliderChange(this.value)"> 
+            </div> 
+          </div>
+            
+          <div class="row">
+            <div class="col-md-5" >    
+                <output id="output"></output>
+            </div>
+            <div class="col-md-9">
               <p>Trade Area Value (Default, 10 Miles)</p>
           </div>
-      </div>  
+          
+        </div>
+      </div>
     </div>
   </div>
-  <!-- Summary Section -->
+  
+  <!-- Summary Section (Customer Demographics) -->
   <div class="container">
     <div class="row">
       <div class=".col-md-6", id=dataTable>
 
-<!-- ========================== Start Chart Layout================================================================================================ -->
-
-<h1 align="center">Customer Demographics</h1>
-            <div class="noscroll">
-                <table id="data-table" class="display" cellspacing="0" width="100%">
-                    <thead>
-                        <tr>
-                            <th>City</th>
-                            <th>Density</th>
-                            <th>Population</th>
-                            <th>State</th>
-                            <th>Per Capita Income</th>
-                            <th>Zipcode</th>
-                        </tr>
-                    </thead>
-                </table>
-            </div>
+      <!--  Start Chart Layout -->
+      <h1 align="center">Customer Demographics</h1>
+        <div class="noscroll">
+          <table id="data-table" class="display" cellspacing="0" width="100%">
+            <thead>
+              <tr>
+                <th>City</th>
+                <th>Density</th>
+                <th>Population</th>
+                <th>State</th>
+                <th>Per Capita Income</th>
+                <th>Zipcode</th>
+              </tr>
+            </thead>
+          </table>
         </div>
-
-
-<!-- ==========================End Chart Layout================================================================================================ -->
       </div>
+<!-- End Chart Layout -->
+    </div>
       <!-- <div class=".col-md-6">
-        <h4>An interactive visualization providing meaningful geographic and demographic information for any business. </h4>
+        <h4>An interactive visualization providing meaningful geographic and demographic information for any business.</h4>
       </div> -->
-    </div>
-
-    <div class="container">
-        <h3>Population vs Cities</h3>
-        <div id="pieChart"><!-- Plotly chart will be drawn inside this DIV --></div>
-
-    </div>
-    <h3>Weath Distribution vs Cities</h3>
-    <div class="container" id="wealthChart"> </div>
   </div>
+
   
-<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script> -->
+
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 
-<!-- <script type="text/javascript" src="/Rutgers/python/homework/circleProject/Circle-File/templates/logic.js"></script> -->
-
 <script>
-
-// var data = [{
-//   values: [907.4537750385208, 47115, 19465.55347851224],
-//   labels: ['Density', 'Population', 'Per Capita Income'],
-//   type: 'pie'
-// }];
-
-// var layout = {
-//   height: 400,
-//   width: 500
-// };
-
-// Plotly.newPlot('pieChart', data, layout);
-
-
-// Mapbox
-// mapboxgl.accessToken = 'pk.eyJ1IjoiaGVsaWNvbjEyMyIsImEiOiJjamFrYTAzdDAyaG93MnhxdXlycm1xbHk1In0.RZ02ssPS4DfeGvM2sx7INg';
-
-// var map = new mapboxgl.Map({
-//     container: 'map',
-//     style: 'mapbox://styles/mapbox/light-v9',
-//     center: [-96, 37.8],
-//     zoom: 3
-//   });
-
-
-// ==============================================================
-// WORKING MAP
-// ==============================================================
-
 // Initial SelectedZips
 
 selectedZips = [];
@@ -186,11 +158,6 @@ var map = L.map("map", {
   
 // Adding tile layer
 L.tileLayer("https://api.mapbox.com/styles/v1/helicon123/cjb1i52fgqpi12rkaruc9jlkb/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoiaGVsaWNvbjEyMyIsImEiOiJjamFrYTAzdDAyaG93MnhxdXlycm1xbHk1In0.RZ02ssPS4DfeGvM2sx7INg").addTo(map);
-
-
-// $("#REFRESHTEST").click(function(){
-//   renderMap();
-// });
 
 function renderMap(){
 
@@ -243,7 +210,6 @@ function renderMap(){
     });
 }
 
-
 Plotly.d3.json('/allStores', function(error, cities){
    if (error) return console.warn('WHAT?');
    console.log(cities.length);
@@ -282,18 +248,15 @@ renderMap();
 
         // Add zipcodes 
         for (var i=0; i<zipList.length; i++){
-
-         selectedZips.push(zipList[i].Zipcode);     
-         selectedZipsData.push(zipList[i]);  
-         popValues.push(zipList[i].Population);
-         popCities.push(zipList[i].City);
-         wealthValues.push(zipList[i].Wealthy);
-
+          selectedZips.push(zipList[i].Zipcode);     
+          selectedZipsData.push(zipList[i]);  
+          popValues.push(zipList[i].Population);
+          popCities.push(zipList[i].City);
+          wealthValues.push(zipList[i].Wealthy);
         }
 
         // Run the renderMap
         renderMap();
-
 
         // console.log(selectedZipsData)
         // Create Population Pie Chart
@@ -325,7 +288,6 @@ renderMap();
         };
 
         Plotly.newPlot('wealthChart', data, layout);        
-
 
         var datatable = $("#data-table").DataTable({
             destroy: true,
@@ -370,7 +332,6 @@ renderMap();
           datatable.draw();
       });   
 
-
       var circle = L.circle(this.loc, {
         color: 'red',
         fillColor: '#f03',
@@ -385,12 +346,6 @@ function sliderChange(val) {
       document.getElementById('slider').value = 60;
   }
 
-
-
-
- 
 </script>
-
-
 </body>
 </html>
