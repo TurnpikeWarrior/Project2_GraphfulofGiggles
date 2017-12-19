@@ -12,7 +12,7 @@ from sqlalchemy import create_engine, func
 app = Flask(__name__)
 
 # data setup
-engine = create_engine("mysql+mysqldb://root:Njmitx123@localhost/where_are_your_stores?host=localhost?port=3306")
+engine = create_engine("mysql+mysqldb://root:Christyajrc1*@localhost/where_are_your_stores?host=localhost?port=3306")
 conn = engine.connect()
 
 # define search object for uszips
@@ -29,6 +29,22 @@ def homepage():
 # the file I loaded I will convert it into a list and return it 
 # you need to assume that you have the list and continue workking
 # that cities list in the class code, just replace with a few sample data and go on....
+
+@app.route("/index")
+def index():
+	return render_template("index.html")
+
+
+# About page
+@app.route("/about")
+def about():
+	return render_template("pages/about.html")
+
+
+# Contact page
+@app.route("/contact")
+def contact():
+	return render_template("pages/contact.html")
 
 @app.route("/allStores")
 def allStores():
@@ -99,9 +115,24 @@ def getZips():
 		# allZips.append(aRec.Zipcode)
 		# allPop.append(aRec.Population)
 		# allIncome.append(aRec.Total)
+		zDict["City"] = aRec.City
+		zDict["Density"] = aRec.Density
+		zDict["HouseOfUnits"] = aRec.HouseOfUnits
+		zDict["LandArea"] = aRec.LandArea
+		zDict["Latitude"] = aRec.Latitude
+		zDict["Longitude"] = aRec.Longitude
+		zDict["NEBoundLatitude"] = aRec.NEBoundLatitude
+		zDict["NEBoundLongitude"] = aRec.NEBoundLongitude
+		zDict["Population"] = aRec.Population
+		zDict["SWBoundLatitude"] = aRec.SWBoundLatitude
+		zDict["SWBoungLongitude"] = aRec.SWBoungLongitude
+		zDict["State"] = aRec.State
+		zDict["TotalWages"] = aRec.TotalWages
+		zDict["WaterArea"] = aRec.WaterArea
+		zDict["Wealthy"] = aRec.Wealthy
 		zDict["Zipcode"] = aRec.Zipcode
-		zDict["Pop"] = aRec.Population
-		zDict["Income"] = aRec.Wealthy
+		zDict["ZipcodeType"] = aRec.ZipcodeType
+
 		
 		allZips.append(zDict)
 

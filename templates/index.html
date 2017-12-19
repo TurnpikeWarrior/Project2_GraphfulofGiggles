@@ -2,59 +2,54 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
-    <!-- Bootstrap -->
-<!--     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
-    <link href="starter-template.css" rel="stylesheet"> -->
+  <!-- CSS Stylesheet -->
+  <link rel="stylesheet" type="text/css" href="styles.css">
 
+  <!--JQuery -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css">
+  <script type="text/javascript" src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
 
-     <!--AJAX -->
-     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css">
-     <script type="text/javascript" src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
- 
-     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css">
-     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-     <link rel="stylesheet" type="text/css" href="styles.css">
-
-     
-
-    <!-- MapBox -->
-    <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.42.1/mapbox-gl.js'></script>
-    <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.42.1/mapbox-gl.css' rel='stylesheet' />
-    <script src='https://api.mapbox.com/mapbox-gl-js/v0.42.0/mapbox-gl.js'></script>
-    <link href='https://api.mapbox.com/mapbox-gl-js/v0.42.0/mapbox-gl.css' rel='stylesheet' />
-
-    <!-- Leaflet JS & CSS -->
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.2/dist/leaflet.css" />
-    <script src="https://unpkg.com/leaflet@1.0.2/dist/leaflet.js"></script>
+  <!-- Bootstrap -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css">
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     
-    <!-- d3 JavaScript -->
-    <script src="https://d3js.org/d3.v4.min.js"></script>
+  <!-- Plotly -->
+  <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/numeric/1.2.6/numeric.min.js"></script>
 
-    <!-- PapaParse -->
-    <!-- <script src="papaparse.min.js"></script> -->
+  <!-- MapBox -->
+  <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.42.1/mapbox-gl.js'></script>
+  <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.42.1/mapbox-gl.css' rel='stylesheet' />
 
-    <!-- Custom CSS -->
-    <!-- <link rel="stylesheet" type="text/css" href="style.css"> -->
+  <!-- Leaflet JS -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.2/dist/leaflet.css" />
+  <script src="https://unpkg.com/leaflet@1.0.2/dist/leaflet.js"></script>
+  
+  <!-- d3 JS -->
+  <script src="https://d3js.org/d3.v4.min.js"></script>
 
-    <!-- <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet"> -->
-
-    <!-- Plotly -->
-    <!-- <script src="https://code.jquery.com/jquery.js"></script> -->
-   <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+  <!-- JavaScript Buttons -->
+  <script src="https://cdn.datatables.net/buttons/1.5.0/js/dataTables.buttons.min.js"></script>
+  <script src="https://cdn.datatables.net/buttons/1.5.0/js/buttons.flash.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.32/pdfmake.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.32/vfs_fonts.js"></script>
+  <script src="https://cdn.datatables.net/buttons/1.5.0/js/buttons.html5.min.js"></script>
+  <script src="https://cdn.datatables.net/buttons/1.5.0/js/buttons.print.min.js"></script>
  
-    <title>Project 2</title>
+  <title>W.A.Y.S. Dashboard</title>
 </head>
 
 <body>
+  <!-- NavBar Container -->
   <nav class="navbar navbar-inverse navbar-fixed-top">
-    <div class="container">
+    <div class="container-fluid">
       <div class="navbar-header">
         <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
           <span class="sr-only">Toggle navigation</span>
@@ -62,176 +57,108 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="#">Graphs of Giggles</a>
+        <a class="navbar-brand" href="#">W.A.Y.S.</a>      
       </div>
       <div id="navbar" class="collapse navbar-collapse">
         <ul class="nav navbar-nav">
-          <li class="active"><a href="#">Home</a></li>
-          <li><a href="#about">About</a></li>
-          <li><a href="#contact">Contact</a></li>
+          <li><a href="/">Home</a></li>
+          <li><a href="about">About</a></li>
+          <li><a href="contact">Contact</a></li>          
         </ul>
-      </div><!--/.nav-collapse -->
+      </div>
     </div>
   </nav>
 
-  <!-- Map Section -->
-  <div class="container-fluid">
-    <div id='map' style='width: 100%; height: 600px;'></div>
-  </div>
-    
-  <!-- Summary Section -->
-  <div class="container">
-    <div class="row">
-      <div class=".col-md-6">
-<!-- ==========================Chart================================================================================================ -->
-            <script>var dataSet = [
-              
-                {
-                  City: "Avenel",
-                  Density: 4313.4920634920645,
-                  HouseOfUnits: 5076,
-                  LandArea: 3.78,
-                  Latitude: 40.5827122,
-                  Longitude: -74.27075090000001,
-                  NEBoundLatitude: 40.6022501,
-                  NEBoundLongitude: -74.24418809999999,
-                  Population: 16305,
-                  SWBoundLatitude: 40.56778389999999,
-                  SWBoungLongitude: -74.294534,
-                  State: "NJ",
-                  TotalWages: 298913215.0,
-                  WaterArea: 0.02,
-                  Wealthy: 18332.610548911376,
-                  Zipcode: "07001",
-                  ZipcodeType: "Standard"
-                  },
-                  {
-                  City: "Bayonne",
-                  Density: 10792.979452054797,
-                  HouseOfUnits: 27802,
-                  LandArea: 5.84,
-                  Latitude: 40.658801000000004,
-                  Longitude: -74.1063776,
-                  NEBoundLatitude: 40.6971391,
-                  NEBoundLongitude: -74.0683179,
-                  Population: 63031,
-                  SWBoundLatitude: 40.642275899999994,
-                  SWBoungLongitude: -74.14696090000001,
-                  State: "NJ",
-                  TotalWages: 1233471703.0,
-                  WaterArea: 0.81,
-                  Wealthy: 19569.286589138683,
-                  Zipcode: "07002",
-                  ZipcodeType: "Standard"
-                  },
-                  {
-                  City: "Bloomfield",
-                  Density: 8943.667296786389,
-                  HouseOfUnits: 19468,
-                  LandArea: 5.29,
-                  Latitude: 40.7989068,
-                  Longitude: -74.1885825,
-                  NEBoundLatitude: 40.848799,
-                  NEBoundLongitude: -74.162628,
-                  Population: 47312,
-                  SWBoundLatitude: 40.767838899999994,
-                  SWBoungLongitude: -74.21189,
-                  State: "NJ",
-                  TotalWages: 1127181370.0,
-                  WaterArea: 0.02,
-                  Wealthy: 23824.42868616841,
-                  Zipcode: "07003",
-                  ZipcodeType: "Standard"
-                  }
-              ];
-              
-              console.log(dataSet);</script>
+
+  <br>
+  <br>
 
 
+<!-- Creates the Overall Grid -->
+<div class="col-sm-12">
 
-<h1 align="center">Customer Demographics</h1>
-            <br />
+  <!-- DataTable===============================================================================================================-->
+    <div class="col-sm-6">
+        <div class=".col-md-6", id=dataTable>
+            <!--  Start Chart Layout -->
+            <h1 align="center">Customer Demographics</h1>
             <div class="noscroll">
-                <table id="data-table" class= table "table-bordered">
-                    <thead>
-                        <tr>
-                            <th>City</th>
-                            <th>Density</th>
-                            <!-- <th>HouseOfUnits</th>
-                            <th>LandArea</th>
-                            <th>Latitude</th>
-                            <th>Longitude</th>
-                            <th>NEBoundLatitude</th>
-                            <th>NEBoundLongitude</th> -->
-                            <th>Population</th>
-                            <!-- <th>SWBoundLatitude</th>
-                            <th>SWBoungLongitude</th> -->
-                            <th>State</th>
-                            <!-- <th>TotalWages</th>
-                            <th>WaterArea</th> -->
-                            <th>Per Capita Income</th>
-                            <th>Zipcode</th>
-                            <!-- <th>ZipcodeType</th> -->
-                        </tr>
-                    </thead>
-                </table>
+              <table id="data-table" class="display" cellspacing="0" width="100%">
+                <thead>
+                  <tr>
+                    <th>City</th>
+                    <th>Density</th>
+                    <th>Population</th>
+                    <th>State</th>
+                    <th>Per Capita Income</th>
+                    <th>Zipcode</th>
+                  </tr>
+                </thead>
+              </table>
             </div>
+          </div>
+        <div class="row">
+   <!-- Pie Charts===============================================================================================================-->
+            
+              <div class="col-md-1">
+                <div class="container" align="left">
+                  <h3>Population vs Cities</h3>
+                  <div id="pieChart"><!-- Plotly chart will be drawn inside this DIV --></div>
+                </div>
+              </div> 
+    
+              <div class="col-md-4">
+                <!-- Sapce between Pie Charts-->
+              </div>
+    
+    
+              <div class="col-md-1">
+                <div class="container">
+                  <h3>Weath Distribution vs Cities</h3>
+                  <div id="wealthChart"></div>
+                </div>
+              </div> 
+    
+
         </div>
-        <script src="dataSet.js" type="text/javascript"></script>
-    
-    
-    <!-- dataSet.json = employee.json -->
-            <script>
-                $(document).ready(function(){
-                    $('#data-table').DataTable({
-                        data: dataSet,
-                        columns: [
-                            {data:"City" },
-                            {data:"Density" },
-                            // {data:"HouseOfUnits" },
-                            // {data:"LandArea" },
-                            // {data:"Latitude" },
-                            // {data:"Longitude" },
-                            // {data:"NEBoundLatitude" },
-                            // {data:"NEBoundLongitude" },
-                            {data:"Population" },
-                            // {data:"SWBoundLatitude" },
-                            // {data:"SWBoungLongitude" },
-                            {data:"State" },
-                            {data:"TotalWages" },
-                            // {data:"WaterArea" },
-                            {data:"Wealthy" },
-                            {data:"Zipcode" },
-                            // {data:"ZipcodeType" }
-                                
-                            
-                        ]
-                    });
-                });
-            </script>
 
-<!-- ==========================Chart================================================================================================ -->
-      </div>
-      <div class=".col-md-6">
-        <h3>Summary</h3>
-      </div>
+
+
     </div>
-  </div>
+   <!-- Map ===============================================================================================================-->
+    <div class="col-sm-6">
+        
+          <!-- Map Layout -->
+          <div id='map' style="width: 100%; height: 600px;"></div>
+          
+          <!-- Trade Area Input -->
+            
+             <div class="col-sm-3">
+                <input type="range" id="myRange" min="0" value="10" max="60" oninput="sliderChange(this.value)"> 
+              </div>
 
-<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script> -->
+              <div class="col-sm-1">
+                <output id="output"></output>
+              </div>
+
+              <div class="row">
+                <p>Trade Area Value (Default, 10 Miles)</p>
+              </div>      
+     </div>   
+
+  <!-- <div class=".col-md-6">
+        <h4>An interactive visualization providing meaningful geographic and demographic information for any business.</h4>
+      </div> -->
+  
+
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 
-<!-- <script type="text/javascript" src="/Rutgers/python/homework/circleProject/Circle-File/templates/logic.js"></script> -->
-
 <script>
-  mapboxgl.accessToken = 'pk.eyJ1IjoiaGVsaWNvbjEyMyIsImEiOiJjamFrYTAzdDAyaG93MnhxdXlycm1xbHk1In0.RZ02ssPS4DfeGvM2sx7INg';
+// Initial SelectedZips
 
-var map = new mapboxgl.Map({
-    container: 'map',
-    style: 'mapbox://styles/mapbox/light-v9',
-    center: [-96, 37.8],
-    zoom: 3
-  });
+selectedZips = [];
+selectedZipsData = [];
+counter = 0;
 
 // Creating map object
 var map = L.map("map", {
@@ -242,75 +169,205 @@ var map = L.map("map", {
 // Adding tile layer
 L.tileLayer("https://api.mapbox.com/styles/v1/helicon123/cjb1i52fgqpi12rkaruc9jlkb/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoiaGVsaWNvbjEyMyIsImEiOiJjamFrYTAzdDAyaG93MnhxdXlycm1xbHk1In0.RZ02ssPS4DfeGvM2sx7INg").addTo(map);
 
-var link = "gz_2010_us_040_00_500k.json"; 
+function renderMap(){
 
-function chooseColor(NAME) {
-  switch (NAME) {
-    case "New Jersey":
-      return "yellow";
-    default:
-      return "black";
-  }
-}
+    // Initial Zip Map
+    var link = "../static/GeoJZipcodesforNJBorders.geojson";
 
-// Grabbing our GeoJSON data..
-d3.json(link, function(data) {
-  // Creating a GeoJSON layer with the retrieved data
-  L.geoJson(data, {
-    style: function(feature) {
-      return {
-        color: "white",
-        fillColor: chooseColor(feature.properties.NAME),
-        fillOpacity: 0.5,
-        weight: 1.5
-      };
+    function chooseColor(zipcode) {
+      if (selectedZips.indexOf(zipcode) > -1)
+      {
+        return "blue";
+      }
+      else {
+        return "gray";
+      } 
     }
-  }).addTo(map);
-});
 
-// var cities = [{
-//   location: [39.924045, -75.037583],
-//   name: "CHERRY HILL"
-// },
-// {
-//   location: [41.3017884, -72.7093312],
-//   name: "GUILFORD"
-// },
-// {
-//   location: [40.5549767, -74.3165411],
-//   name: "WOODBRIDGE"
-// }
-// ];
+    // Function that will determine opacity based on whether we see the selection
+    function chooseOpacity(zipcode) {
+
+      if (selectedZips.indexOf(zipcode) > -1)
+      {
+        return 0.85;
+      }
+      else {
+        return 0.15;
+      }
+    }
+
+    // Grabbing our GeoJSON data..
+    d3.json(link, function(data) {
+      // Creating a geoJSON layer with the retrieved data
+      L.geoJson(data, {
+
+        // Base Map Style
+        style: function(feature) {
+          return {
+            color: "gray",
+            fillColor: chooseColor(feature.properties.ZCTA5CE10),
+            fillOpacity: chooseOpacity(feature.properties.ZCTA5CE10),
+            // stroke: false,
+            weight: 0.5
+          }
+        },
+
+        // Called on each feature
+        onEachFeature: function(feature, layer) {
+          layer.bindPopup("<h1>" + feature.properties.ZCTA5CE10 + "</h1>");
+        }
+      }).addTo(map);
+    });
+}
 
 Plotly.d3.json('/allStores', function(error, cities){
    if (error) return console.warn('WHAT?');
    console.log(cities.length);
-
     for (var i = 0; i < cities.length; i++) {
       var city = cities[i];
-      console.log(city.Location)
+      // console.log(city.Location)
+      
       // L.marker(city.location)
       //   .bindPopup("<h1>" + city.name + "</h1>")
       //   .addTo(map);
     var marker = new L.marker(city.Location).addTo(map).on('click', onClick);
         marker.key = city.StoreName;
+        marker.loc = city.Location;
+        marker.bindPopup("<h1>" + city.StoreName + "</h1>");
     }
 });
 
-// Loop through the cities array and create one marker for each city, bind a popup containing its name and population add it to the map
-    // var marker2 =new  L.marker([13.0101, 80.2157]).addTo(mymap).on('mouseover', onClick);
-    // marker2.key = "marker-2";
+// Call Render Map
+renderMap();
 
-    function onClick(e) {
+// var TradeArea=document.getElementById("TradeArea")
+//==========================onClickStart========================================================================================
+    function onClick(e) { 
+
+      var TradeArea = document.getElementById("myRange").value;
+      console.log(TradeArea);
       var stName=this.key;
-    // alert(stName); // i can expect my keys here
+      popValues  = [];
+      popCities  = [];
+      wealthValues = [];
 
-    // console.log("in 76 " + stName);
-    Plotly.d3.json('/allZips?Store='+stName+'&Scope='+10, function(error, zipList) {
-    if (error) return console.warn(error);
+      Plotly.d3.json('/allZips?Store='+stName+'&Scope='+TradeArea, function(error, zipList) {
+
+        if (error) return console.warn(error);
         console.log(zipList);
-    });
-}
+
+        // Add zipcodes 
+        for (var i=0; i<zipList.length; i++){
+          selectedZips.push(zipList[i].Zipcode);     
+          selectedZipsData.push(zipList[i]);  
+          popValues.push(zipList[i].Population);
+          popCities.push(zipList[i].City);
+          wealthValues.push(zipList[i].Wealthy);
+        }
+
+        // Run the renderMap
+        renderMap();
+
+        // console.log(selectedZipsData)
+        // Create Population Pie Chart
+        var data = [{
+          values: popValues,
+          labels: popCities,
+          title: 'Population Distribution by Cities',
+          type: 'pie'
+          },
+          ];
+        
+        var layout = {
+          height: 300,
+          width: 425,
+          showlegend: false
+          
+          // height: 400,
+          // width: 500
+        };
+        
+        Plotly.newPlot('pieChart', data, layout);
+
+        //Create Wealth Distribution Chart
+        // Create Population Pie Chart
+        var data = [{
+          values: wealthValues,
+          labels: popCities,
+          type: 'pie'
+        }];
+
+        var layout = {
+          height: 300,
+          width: 425,
+          showlegend: false
+          // height: 400,
+          // width: 500
+        };
+
+        Plotly.newPlot('wealthChart', data, layout);        
+
+        var datatable = $("#data-table").DataTable({
+            destroy: true,
+            searching: true,
+            filter: true,
+            // dom: '<"top"fl>rt<"bottom"i,,Bp><"clear">',
+            dom: "<'row'<'col-sm-6'l><'col-sm-6'f>>" +
+                  "<'row'<'col-sm-12'tr>>" +
+                  "<'row'<'col-sm-5'i><'col-sm-7'p>>"+
+                  "<'row'<'col-sm-12'B>>",
+                  
+            buttons: ['copy', 'csv', 'excel', 'pdf', 'print'],
+            retrieve:true,
+            lengthMenu:[[5,10, 25, 50, -1], [5,10, 25, 50, "All"]],
+
+            // columns.render:true,
+            data: selectedZipsData,  
+            columns: [
+                {data:"City" },
+                {data:"Density" , render: $.fn.dataTable.render.number( ',', '.', 2) },
+                {data:"Population" },
+                {data:"State" },
+                {data:"Wealthy" , render: $.fn.dataTable.render.number( ',', '.', 2, '$' ) },
+                {data:"Zipcode" } 
+            ],
+
+            // buttons: [
+            // {
+            //     extend: 'pdf',
+            //     text: 'Save current page',
+            //     exportOptions: {
+            //         modifier: {
+            //             page: 'current'
+            //           }
+            //       }
+            //   }
+            // ]
+        });
+
+          datatable.clear();
+          datatable.rows.add(selectedZipsData);
+          datatable.draw();
+      });   
+
+      var circle = L.circle(this.loc, {
+        color: 'red',
+        fillColor: '#f03',
+        fillOpacity: 0.5,
+        radius: TradeArea/0.000621371
+      }).addTo(map);
+
+    }
+//==========================onClickEnd========================================================================================     
+function sliderChange(val) {
+    document.getElementById('output').innerHTML = val;
+      document.getElementById('slider').value = 60;
+  }
+
 </script>
 </body>
 </html>
+
+
+
+<!-- https://assets1.risnews.com/inline-images/bbby-hp-hero.jpg -->
