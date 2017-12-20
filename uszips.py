@@ -12,7 +12,7 @@ from sqlalchemy import create_engine, func
 app = Flask(__name__)
 
 # data setup
-engine = create_engine("mysql+mysqldb://root:Christyajrc1*@localhost/where_are_your_stores?host=localhost?port=3306")
+engine = create_engine("mysql+mysqldb://root: <MySQLpassword> @localhost/where_are_your_stores?host=localhost?port=3306")
 conn = engine.connect()
 
 # define search object for uszips
