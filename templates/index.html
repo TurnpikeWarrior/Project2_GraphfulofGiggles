@@ -6,7 +6,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
-<!-- CSS Stylesheet -->
+
+  <!-- CSS Stylesheet -->
   <link rel=stylesheet type=text/css href="{{ url_for('static', filename='style.css') }}"><link rel="stylesheet" type="text/css" href="static/style.css">
 
   <!--JQuery -->
@@ -154,7 +155,7 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 
 <script>
-// Initial SelectedZips
+  // Initial SelectedZips
 
 selectedZips = [];
 selectedZipsData = [];
@@ -196,7 +197,7 @@ function renderMap(){
       }
     }
 
-    // Grabbing our GeoJSON data..
+    // Grabbing our GeoJSON data for zipcode ploting
     d3.json(link, function(data) {
       // Creating a geoJSON layer with the retrieved data
       L.geoJson(data, {
@@ -225,11 +226,7 @@ Plotly.d3.json('/allStores', function(error, cities){
    console.log(cities.length);
     for (var i = 0; i < cities.length; i++) {
       var city = cities[i];
-      // console.log(city.Location)
-      
-      // L.marker(city.location)
-      //   .bindPopup("<h1>" + city.name + "</h1>")
-      //   .addTo(map);
+
     var marker = new L.marker(city.Location).addTo(map).on('click', onClick);
         marker.key = city.StoreName;
         marker.loc = city.Location;
@@ -256,7 +253,7 @@ renderMap();
         if (error) return console.warn(error);
         console.log(zipList);
 
-        // Add zipcodes 
+        // Pir chart(s) Variables in a for loop
         for (var i=0; i<zipList.length; i++){
           selectedZips.push(zipList[i].Zipcode);     
           selectedZipsData.push(zipList[i]);  
@@ -283,8 +280,6 @@ renderMap();
           width: 425,
           showlegend: false
           
-          // height: 400,
-          // width: 500
         };
         
         Plotly.newPlot('pieChart', data, layout);
@@ -305,8 +300,9 @@ renderMap();
           // width: 500
         };
 
-        Plotly.newPlot('wealthChart', data, layout);        
+        Plotly.newPlot('wealthChart', data, layout);
 
+// data table format and data render
         var datatable = $("#data-table").DataTable({
             destroy: true,
             searching: true,
@@ -332,17 +328,6 @@ renderMap();
                 {data:"Zipcode" } 
             ],
 
-            // buttons: [
-            // {
-            //     extend: 'pdf',
-            //     text: 'Save current page',
-            //     exportOptions: {
-            //         modifier: {
-            //             page: 'current'
-            //           }
-            //       }
-            //   }
-            // ]
         });
 
           datatable.clear();
@@ -365,6 +350,8 @@ function sliderChange(val) {
   }
 
 </script>
+
+
 </body>
 </html>
 
