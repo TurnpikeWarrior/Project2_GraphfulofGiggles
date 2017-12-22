@@ -15,6 +15,7 @@
     <style>
         body{
             font-family: Arial, Helvetica, sans-serif;
+            font-size: 1.6em;
         }
 
         .container{
@@ -29,7 +30,28 @@
             /* Set the fixed height of the footer here */
             height: 60px;
             background-color: #f5f5f5;
+            text-align: center;
         }
+
+        .footer p {padding-top: 20px;}
+
+        .float-right {
+            float: right !important;
+        }
+
+        code {
+            background-color: black; 
+            color: white;
+            margin: 5px; 
+            padding: 10px; 
+        }
+
+        .codebox p {
+            margin-top: 25px;
+        }
+
+        h2 {margin-top: 0px;}
+        h4 {font-weight: bold;}
     </style>
 </head>
 
@@ -62,30 +84,37 @@
 
 
     <div class="container">
-        <h1><strong>Project W.A.Y.S. Documentation</strong></h1>
+        <h1><strong><a name="backtotop">Project W.A.Y.S. Documentation</a></strong></h1>
         <hr>
         <div class="row">
-            <div class="col-md-6">
+            <div class="col-md-8">
                 <h2><strong>Description</strong></h2>
                 <p>An interactive visualization providing meaningful geographic and demographic information for any business. 
                     Where Are Your services - W.A.Y.S is a unique app designed to help you "The Business / The Service Provider" 
                     understand your business surroundings. The app blends your location with geo/demo details around a "circle/radius"</p>
             </div>
-            <div class="col-md-1">
-                
-            </div>
-            <div class="col-md-5">
-                <strong>GitHub</strong><br><span class="glyphicon glyphicon-folder-open" aria-hidden="true"></span> <a href = "https://github.com/TurnpikeWarrior/Project2_GraphfulofGiggles" target="_blank"> source file</a> 
+            <div class="col-md-4">
+                <p><strong>Homepage</strong><br>http://heroku.app</p>
+                <p><strong>GitHub</strong><br><img width="16" width="16" src="https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/github.svg" /><a href = "https://github.com/TurnpikeWarrior/Project2_GraphfulofGiggles" target="_blank"> source file</a></p>
             </div>
         </div>
-        <p>
-            <!-- <code>brew install </code> -->
-        </p>
+        
+        <h4>Files Needed for Database</h4>
+            &ndash; where_are_your_stores_njstores.sql<br>
+            &ndash; where_are_your_stores_census_data.sql<br>
+            &ndash; where_are_your_stores_combo_demographic_data.sql<br>
+
+        <h3>Instruction</h3>
+        <div class="codebox">
+            <p>1. <code>brew install</code></p>
+            <p>2. <code>source activate pythondata</code></p>
+        </div>
     </div>
     
     <footer class="footer">
         <div class="container">
-            <p class="text-muted">Place sticky footer content here.</p>
+            <p class="float-right"><a href="#backtotop">back to top</a></p>
+            <p>lorem ipsum</p>
         </div>
     </footer>
 
